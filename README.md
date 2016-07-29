@@ -1,5 +1,5 @@
 # E-grider
-Hello, it is Data Grid for Enterprise Application.(Is is not fully complated)
+Hello, it is Data Grid for Enterprise Application.(it is not fully complated)
 
 # Feature List:
 ✔ Tree Data 
