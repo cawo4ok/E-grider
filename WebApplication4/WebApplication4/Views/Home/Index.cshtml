@@ -1,0 +1,55 @@
+﻿<div ng-controller="pageController" >
+    <div ng-repeat="filter in objFilter track by $index">
+        <label>{{filter.field}}:</label>
+        <input ng-model="filter.value" ng-keyup="search.refresh()" />
+    </div>
+     <grid selected="row" filter="objFilter" api="search">
+        <collumns>
+            <column-group title="Column-group Title Level 1">
+                <column-group title="Column-group Title Level 21">
+                    <collumn field="Number" title="Number">
+                        <menu-list>
+                            <menu-item text="21 value" code="code"></menu-item>
+                            <menu-item text="12 value" code="code"></menu-item>
+                            <menu-item text="13 value" code="code"></menu-item>
+                        </menu-list>
+                    </collumn>
+                    <column-group title="Column-group Title Level 3">
+                        <collumn field="Text1" title="Personal Key">
+                            <menu-list>
+                                <menu-item text="41 value" code="code"></menu-item>
+                                <menu-item text="22 value" code="code"></menu-item>
+                                <menu-item text="23 value" code="code"></menu-item>
+                            </menu-list>
+                        </collumn>
+                    </column-group>
+                </column-group>
+                <column-group title="Column-group Title Level 22">
+                    <collumn field="Text2" title="#LicenceKey">
+                        <menu-list>
+                            <menu-item text="31 value" code="code"></menu-item>
+                            <menu-item text="32 value" code="code"></menu-item>
+                            <menu-item text="33 value" code="code"></menu-item>
+                        </menu-list>
+                    </collumn>
+                    <column-group title="Column-group Title Level 3">
+                        <collumn field="Text3" title="Keygen">
+                            <menu-list>
+                                <menu-item text="41 value" code="code"></menu-item>
+                                <menu-item text="42 value" code="code"></menu-item>
+                                <menu-item text="43 value" code="code"></menu-item>
+                            </menu-list>
+                        </collumn>
+                    </column-group>
+                    </column-group>
+            </column-group>
+        </collumns>
+        <!--<array-data data="arrayList"></array-data>-->
+        <http-data page-size="100" url="http://localhost:58128/api/products/"></http-data>
+    </grid>
+
+    <pre>
+        {{row|json}}    
+        </pre>
+
+</div>

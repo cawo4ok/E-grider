@@ -1,0 +1,28 @@
+﻿﻿<!DOCTYPE HTML>
+<html ng-app="App">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Grid Application</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic,800,800italic,300italic' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/App/Styles")
+</head>
+<body>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    <!--Jquery and Angular.js packages-->
+    <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.0-rc.3/angular-sanitize.js"></script>
+    <!--App module-->
+        @Scripts.Render("~/bundles/GridApp")
+        @Scripts.Render("~/bundles/Grid")
+    
+</body>
+</html>

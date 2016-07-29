@@ -1,0 +1,136 @@
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\WebApplication4.dll.config
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\WebApplication4.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\WebApplication4.pdb
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Antlr3.Runtime.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\EntityFramework.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\EntityFramework.SqlServer.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.Core.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.Owin.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Host.SystemWeb.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Cookies.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Facebook.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Google.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.OAuth.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Twitter.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Web.Infrastructure.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Newtonsoft.Json.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Owin.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Net.Http.Formatting.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Helpers.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Http.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Http.Owin.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Http.WebHost.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Mvc.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Optimization.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Razor.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.WebPages.Deployment.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.WebPages.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.WebPages.Razor.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\WebGrease.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Newtonsoft.Json.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Net.Http.Formatting.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Helpers.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Http.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Http.WebHost.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Mvc.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Optimization.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Razor.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.WebPages.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.WebPages.Deployment.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.WebPages.Razor.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Antlr3.Runtime.pdb
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\EntityFramework.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\EntityFramework.SqlServer.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.Core.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Facebook.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Cookies.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.OAuth.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Google.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Twitter.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Http.Owin.xml
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\obj\Debug\WebApplication4.csprojResolveAssemblyReference.cache
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\obj\Debug\WebApplication4.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\obj\Debug\WebApplication4.pdb
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\dotless.Core.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Optimization.Less.dll
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\dotless.Core.pdb
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Optimization.Less.pdb
+c:\users\oleksandr.vasylenko\documents\visual studio 2013\Projects\WebApplication4\WebApplication4\bin\System.Web.Optimization.Less.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\WebApplication4.dll.config
+C:\gitGrid\WebApplication4\WebApplication4\bin\WebApplication4.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\WebApplication4.pdb
+C:\gitGrid\WebApplication4\WebApplication4\bin\Antlr3.Runtime.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\dotless.Core.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\EntityFramework.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\EntityFramework.SqlServer.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.Core.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Cookies.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Facebook.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Google.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.OAuth.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Twitter.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Web.Infrastructure.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Newtonsoft.Json.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\Owin.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Net.Http.Formatting.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Helpers.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Http.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Http.Owin.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Http.WebHost.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Mvc.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Optimization.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Optimization.Less.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Razor.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.WebPages.Deployment.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.WebPages.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.WebPages.Razor.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\WebGrease.dll
+C:\gitGrid\WebApplication4\WebApplication4\bin\dotless.Core.pdb
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Optimization.Less.pdb
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Optimization.Less.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Newtonsoft.Json.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Net.Http.Formatting.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Helpers.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Http.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Http.WebHost.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Mvc.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Optimization.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Razor.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.WebPages.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.WebPages.Deployment.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.WebPages.Razor.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Antlr3.Runtime.pdb
+C:\gitGrid\WebApplication4\WebApplication4\bin\EntityFramework.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\EntityFramework.SqlServer.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.Core.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Facebook.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Cookies.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.OAuth.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Google.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.Twitter.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\gitGrid\WebApplication4\WebApplication4\bin\System.Web.Http.Owin.xml
+C:\gitGrid\WebApplication4\WebApplication4\obj\Debug\WebApplication4.csprojResolveAssemblyReference.cache
+C:\gitGrid\WebApplication4\WebApplication4\obj\Debug\WebApplication4.dll
+C:\gitGrid\WebApplication4\WebApplication4\obj\Debug\WebApplication4.pdb

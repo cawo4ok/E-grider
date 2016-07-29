@@ -1,0 +1,335 @@
+﻿::-webkit-scrollbar {
+    width: 10px;
+    height:10px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 3px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+// Color variables (appears count calculates by raw css)
+@cMilk: #f0eceb; // Appears 2 times
+
+// Width variables (appears count calculates by raw css)
+@w220: 220px; // Appears 2 times
+@w600: 600px; // Appears 2 times
+
+// Height variables (appears count calculates by raw css)
+@h300: 300px; // Appears 2 times
+.grid{
+    margin: 0 auto;
+    width:600px;
+    position:relative;
+   font-family: 'Open Sans', sans-serif;
+    .grid-sort-desc {
+        background: url(http://www.iconshock.com/img_vista/MATERIAL/text/jpg/sort_desccending_icon.jpg);
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: 90% 57%;
+        cursor:pointer;
+    }
+    .grid-sort-asc {
+	    background: url(http://www.iconshock.com/img_vista/MATERIAL/text/jpg/sort_ascending_icon.jpg);
+        background-size: 30px;
+        background-color:white;
+        background-repeat: no-repeat;
+        background-position: 90% 57%;
+        cursor:pointer;
+    }
+    .grid-sort-default{
+        background: url(https://maxcdn.icons8.com/Share/icon/Arrows//sort1600.png);
+        background-size: 30px;
+        background-color:white;
+        background-repeat: no-repeat;
+        background-position: 90% 57%;
+        cursor:pointer;
+    }
+    .grid-selected {
+	    background: #4279BD !important;
+        color:white !important;
+    }
+    .grid-column-drop{
+        background-color: #f6f6f6;
+        padding: 4px 4px 4px 4px;
+        white-space: nowrap;
+        width: 97%;
+        cursor: default;
+        position: relative;
+        min-height: 20px;
+        .grid-column-drop-list{
+            list-style:none;
+            padding-left: 25px;
+            margin: 0;
+            .grid-column-drop-item{
+                position: relative;
+                height: 20px;
+                display: inline-block;
+                background-color: #4279bd;
+                border: 1px solid black;
+                padding: 1px 5px;
+                margin-left:1px;
+                .grid-column-drop-text{
+                    margin-right:20px;
+                    color:white;
+                }
+                .grid-column-close{
+                    width: 21px;
+                    cursor: pointer;
+                    opacity: 0.7;
+                    position:absolute;
+                    right:0;
+                    -webkit-transition-duration: 0.3s;
+                    -moz-transition-duration: 0.3s;
+                    -o-transition-duration: 0.3s;
+                    transition-duration: 0.3s;
+                    -webkit-transition-property: -webkit-transform;
+                    -moz-transition-property: -moz-transform;
+                    -o-transition-property: -o-transform;
+                    transition-property: transform;
+                    &:hover{
+                        opacity:1;
+                       -webkit-transform:rotate(360deg);
+                        -moz-transform:rotate(360deg);
+                        -o-transform:rotate(360deg);
+                    }
+                }
+            }
+        }
+        .grid-column-drop-empty-message{
+            padding-left: 2px;
+            padding-right: 2px;
+            color: #808080;
+        }
+        .grid-column-drop-icon-empty{
+            padding-right: 4px;
+            position: absolute;
+            left: 6px;
+            opacity: 0.3;
+            top: 7px;
+        }
+        .grid-column-drop-icon{
+            padding-right: 4px;
+            position: absolute;
+            left: 6px;
+            opacity: 1;
+            top: 7px;
+        }
+
+    }
+    .grid-scrolltable-child {
+	    position: relative;
+        width:590px;
+        overflow:hidden;
+        background-color:#f0eceb;
+        box-shadow:0px 0px 0px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 2px rgba(0, 0, 0, 0.05);
+        .grid-header {
+	        background-color: #00cccc;
+	        border-width: 1px;
+            color: #fff;
+	        border: 1px solid #eee;
+            min-width:219px;
+            text-align:center;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 5px 10px;
+            font-weight:bold;
+            letter-spacing: 0px;
+        }
+    }
+    .grid-main-table {
+	    height: @h300;
+	    margin: 0 auto;
+        
+	    width: @w600;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px rgba(0, 0, 0, 0.05), 0px 30px 20px rgba(0, 0, 0, 0.05);
+        .grid-scrolltable {
+	        -webkit-flex-direction: column;
+	        display: -webkit-flex;
+	        display: flex;
+	        flex-direction: column;
+	        height: 100%;
+	        height: @h300;
+            position:relative;
+	        overflow-x: scroll;
+	        overflow: scroll;
+	        width: @w600;
+
+            .grid-table-wrapper {
+	            -webkit-flex: 1;
+	            cursor: pointer;
+	            flex: 1;
+	            overflow-y: initial;
+	            width: -webkit-fit-content;
+
+                .grid-line-item{
+                    height:22px;
+                    color: #999;
+                    &:first-child {
+		                .grid-item {
+			                border-top-width: 0;
+
+		                }
+	                }
+                    .grid-item {
+	                    border-width: 1px;
+	                    border: 1px solid #eee;
+                        
+                        min-width: 219px;
+                        padding: 10px 10px;
+                        .group-tree{
+                            background-image: url(http://s1.iconbird.com/ico/0612/MustHave/w256h2561339195591Add256x256.png);
+                            position: relative;
+                            padding-left: 15px;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            background-size: 10px;
+                            background-position: 0 7px;
+                        }
+                        .group-tree-opened{
+                            background-image: url(http://www.free-icons-download.net/images/blue-minus-sign-icon-11699.png) !important;
+                        }
+                    }
+                    &:hover{
+                        color: #555;
+                        background: #f4f4f4;
+                    }
+                }
+            }
+            
+        }
+        .button-right-corner-block{
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                right: 0px;
+                bottom: 0px;
+                background-color: rebeccapurple;
+            }
+    }
+    table{
+        border-collapse: collapse;
+    }
+    .clear-header{
+        border:none !important;
+    }
+}
+/*for drag and drop*/
+.on-drag-enter {
+    background-color : #00a0a0 !important;
+}
+
+.on-drag-enter-custom {
+    background-color:#65eeee;
+}
+
+.on-drag-hover {
+    background-color:#77b9b9 !important;
+    border:1px dotted #2196F3;
+     .grid-column-drop-icon{
+            opacity: 1 !important;
+     }
+}
+
+.on-drag-hover-custom {
+   background-color:#65eeee;
+}
+.display-block{
+    display:block !important;
+}
+.display-none{
+    display: none !important;
+}
+/*angular-ui-notification*/
+.ui-notification
+{
+    position: fixed;
+    z-index: 9999;
+
+    width: 300px;
+
+    -webkit-transition: all ease .5s;
+         -o-transition: all ease .5s;
+            transition: all ease .5s;
+
+    color: #fff;
+    border-radius: 0;
+    background: #337ab7;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
+}
+.ui-notification.clickable
+{
+    cursor: pointer;
+}
+.ui-notification.clickable:hover
+{
+    opacity: .7;
+}
+.ui-notification.killed
+{
+    -webkit-transition: opacity ease 1s;
+         -o-transition: opacity ease 1s;
+            transition: opacity ease 1s;
+
+    opacity: 0;
+}
+.ui-notification > h3
+{
+    font-size: 14px;
+    font-weight: bold;
+
+    display: block;
+
+    margin: 10px 10px 0 10px;
+    padding: 0 0 5px 0;
+
+    text-align: left;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .3);
+}
+.ui-notification a
+{
+    color: #fff;
+}
+.ui-notification a:hover
+{
+    text-decoration: underline;
+}
+.ui-notification > .message
+{
+    margin: 10px 10px 10px 10px;
+}
+.ui-notification.warning
+{
+    color: #fff;
+    background: #f0ad4e;
+}
+.ui-notification.error
+{
+    color: #fff;
+    background: #d9534f;
+}
+.ui-notification.success
+{
+    color: #fff;
+    background: #5cb85c;
+}
+.ui-notification.info
+{
+    color: #fff;
+    background: #5bc0de;
+}
+#1{
+    color:red !important;
+}
+
+
+
+
+
+
+
