@@ -29,7 +29,16 @@ namespace WebApplication4.Models
         public string value { get; set; }
         
     }
-
+    public class Item
+    {
+        public string name { get; set; }
+        public string language { get; set; }
+        public string gameName { get; set; }
+        public int gameBought { get; set; }
+        public int bankBalance { get; set; }
+        public byte rating { get; set; }
+        public int totalWinnings { get; set; }
+    }
     public class Parameters
     {
         public string column { get; set; }

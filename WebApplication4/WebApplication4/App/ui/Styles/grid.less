@@ -165,7 +165,7 @@
 	            flex: 1;
 	            overflow-y: initial;
 	            width: -webkit-fit-content;
-
+                
                 .grid-line-item{
                     height:22px;
                     color: #999;
@@ -181,18 +181,8 @@
                         
                         min-width: 219px;
                         padding: 10px 10px;
-                        .group-tree{
-                            background-image: url(http://s1.iconbird.com/ico/0612/MustHave/w256h2561339195591Add256x256.png);
-                            position: relative;
-                            padding-left: 15px;
-                            background-size: contain;
-                            background-repeat: no-repeat;
-                            background-size: 10px;
-                            background-position: 0 7px;
-                        }
-                        .group-tree-opened{
-                            background-image: url(http://www.free-icons-download.net/images/blue-minus-sign-icon-11699.png) !important;
-                        }
+                        
+                        
                     }
                     &:hover{
                         color: #555;
@@ -217,6 +207,24 @@
     .clear-header{
         border:none !important;
     }
+}
+.group-tree-opened > td:first-child{
+    background-image: url(http://www.free-icons-download.net/images/blue-minus-sign-icon-11699.png) !important;
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: 0 50%;
+}
+.group-tree > td:first-child{
+    background-image: url(http://s1.iconbird.com/ico/0612/MustHave/w256h2561339195591Add256x256.png);
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: 0 50%;
+}
+.last-item{
+    background-image:none !important;
+}
+td{
+  position: relative;
 }
 /*for drag and drop*/
 .on-drag-enter {

@@ -16,7 +16,7 @@
     this.main = function (col, visibleColumns, columnDropArray) {
         var Row = '',
             inTdLevel = '';
-        if (columnDropArray.length == 0) {
+        if (columnDropArray.length === 0) {
             col.forEach(function (item, i, arr) {
                 if (visibleColumns[item.title]) {
                     Row += '';
@@ -31,22 +31,21 @@
                 ' + Row + '</tr>\
             </tbody>';
         }
-
         /*if grouping*/
-        for (var i = columnDropArray.length, j = 0; i > j; i--) {
-            inTdLevel = '<div class="group-tree"  ng-click="ctrl.addClickedChild($event)" criteriy-value="{{line[\'' + columnDropArray[i - 1].field + '\']}}" criteriy-field="' + columnDropArray[i - 1].field + '">{{line["' + columnDropArray[i - 1].field + '"]}}</div>';
-        }
-        Row += '<td class="grid-item" >' + inTdLevel + '</td>';
+        Row += '<td class="grid-item" ng-class="{\'last-item\':line.lastItem==true}" ng-click="!line.lastItem && ctrl.addClickedChild($event)" criteriy-value="{{line[\'groupValue\']}}" criteriy-field="{{line[\'groupName\']}}" criteriy-level="{{line[\'level\']}}" ng-style="{\'left\':5*line[\'level\']}">{{line["groupValue"]}}</td>';
         col.forEach(function (item, i, arr) {
-            if (visibleColumns[item.title] !== true) {
-                Row += '<td class="grid-item" ></td>';
+            if (visibleColumns[item.title]) {
+                Row += '';
+            }
+            else if (typeof visibleColumns[item.field] === "undefined" || visibleColumns[item.field] === false) {
+                Row += '<td class="grid-item">{{line["' + item.field + '"]}}</td>';
             }
         });
-        console.log(Row);
-        return '<tbody vs-scroll-parent=".grid-scrolltable" vs-repeat>\
-            <tr ng-repeat="line in arrayList track by $index" data-ng-init="ctrl.collumnHtml(line)" ng-class="{\'grid-line-item\': true, \'grid-selected\':selectedRow==$index}">\
-            ' + Row + '</tr>\
-        </tbody>';
+
+        return '<tbody vs-repeat vs-scroll-parent=".grid-scrolltable">\
+                <tr ng-repeat="line in arrayList track by $index" ng-class="{\'grid-line-item\': true, \'group-tree-opened\':line.opened==true, \'group-tree\':!line.opened}" >\
+                ' + Row + '</tr>\
+            </tbody>';
     };
     this.header = function (treeList, columns) {
         var header = '';
@@ -72,57 +71,267 @@
 .service("groupDataProvider", function ($q) {
     this.get = function (provider) {
         var groupList = [],
+            values = [],
             clicked = [];
         return {
             setClicked:function(clickedArray){
                 clicked = clickedArray;
             },
-            getClicked:function(){
+            getClicked: function () {
+                if (clicked.length > 0) {
+                    clicked.forEach(function (click, i, arr) {
+                        if (click.parent) {
+                            click.parent = false;
+                        }
+                    });
+                }
                 return clicked;
             },
-            setGroup: function (groupBy) {
+            setGroupAndValues: function (groupBy, val) {
                 groupList = groupBy;
+                values = val;
             },
             getGroup:function(){
                 return groupList;
             },
+            getValues:function(){
+                return values;
+            },
             getData: function (сonfigData) {
                 var groupArray = this.getGroup(),
+                    values = this.getValues(),
                     clicked = this.getClicked();
                     self = this,
-                    deferred = $q.defer();
+                    deferred = $q.defer(),
+                    notClosingCols = ['groupValue', 'groupName', 'opened', 'level', 'child'];
+                    
+                    provider.getData(сonfigData).then(function (data) {
+                        //ALERT for testing
+                        data[1].Text1 = "Hammer91";
+                        data[2].Text1 = "Hammer91";
+                        data[3].Text1 = "Hammer91";
+                        data[12].Number = 45;
 
-                    console.log(clicked);
-
-                provider.getData(сonfigData).then(function (data) {
-                    var sortedArray = [];
-                    if (groupArray.length == 0) {
-                        deferred.resolve(data);
-                        return deferred.promise;
-                    }
-                    /*Sorting with all groupArray lines*/
-                    var stringSorting = '',
-                    sortedArray,
-                    uniqGroupElement;
-
-                    groupArray.forEach(function (line, i, arr) {
-                        stringSorting += groupArray[i].field;
-                        if (i + 1 !== arr.length) {
-                            stringSorting += ' ';
+                        if (groupArray.length == 0) {
+                            deferred.resolve(data);
+                            return deferred.promise;
                         }
+
+                        /*if have grouping*/
+                        var stringSorting = '',
+                            sortedArray = [],
+                            uniqueArray = [],
+                            sortedClicked = [],
+                            groupLength = groupArray.length;
+                        /*add to notCloingCols if we have some values*/
+                        values.forEach(function (item, i, arr) {
+                            notClosingCols.push(item.title);
+                        });
+                        
+                        /*creating unique base of elements*/
+                        uniqueArray = _.uniqBy(data, groupArray[0].field.toString());
+                        uniqueArray = _.cloneDeep(uniqueArray);
+                        uniqueArray.forEach(function (item, i, arr) {
+                            item.groupValue = item[groupArray[0].field];
+                            item.groupName = groupArray[0].field;
+                            item.level = 0;
+                        });
+
+                        
+                        /*sort all opening rows by level value*/
+                        sortedClicked = _.sortBy(clicked, 'level');
+
+                        /*Insertion opened elements*/
+                        sortedClicked.forEach(function(itemOnLevel, itemIndex, level){
+                            var childs = [],
+                                index = null;
+
+                            data.forEach(function (item, i, arr) {
+                                if (item[itemOnLevel.field] == itemOnLevel.value) {
+                                    var item = _.cloneDeep(item),
+                                        level = parseInt(itemOnLevel.level) + 1,
+                                        insBefore = false;
+
+                                    if (level <= groupArray.length) {                                      
+                                        item.level = level;
+
+                                        /*if not inserted before(if in some level we have group)*/
+                                        childs.forEach(function(child, i, arr){
+                                            if(groupArray[level] && child[groupArray[level].field] == item[groupArray[level].field]){
+                                                insBefore = true;
+                                            }
+                                        });
+                                        if (!insBefore) {
+                                            childs.push(item);
+                                        }
+                                    }
+                                }
+                            });
+
+                            uniqueArray.forEach(function (item, i, arr) {
+                                if (item[itemOnLevel.field] == itemOnLevel.value) {
+                                    index = i;
+                                }
+                            });
+
+                            uniqueArray.splice.apply(uniqueArray, [index + 1, 0].concat(childs));
+                        });
+
+                        /*Child for every elem*/
+                        uniqueArray.forEach(function (uniq, i, arr) {
+                            var groupParameters,
+                                searchingObj = {};
+                            if (uniq.level < groupArray.length) {
+                                groupParameters = groupArray.slice(0, uniq.level+1); 
+                            }
+                            else {
+                                groupParameters = groupArray;
+                            }
+                            //Lets create searchingObj
+                            groupParameters.forEach(function (param, i, arr) {
+                                searchingObj[param.field] = uniq[param.field];
+                            });
+                            uniq.child = _.cloneDeep(_.filter(data, searchingObj));
+                        });
+                        /*Handling values*/
+                        values.forEach(function (value, i, arr) {
+                            switch (value.values) {
+                                case 'first':
+                                    break;
+                                case 'last':
+                                    uniqueArray.forEach(function (item, i, arr) {
+                                        if (item.level !== groupArray.length) {
+                                            item[value.field] = item.child[item.child.length - 1][value.field];
+                                        }
+                                    });
+                                    break;
+                                case 'avg':
+                                    uniqueArray.forEach(function (item, i, arr) {
+                                        var sum = null;
+                                        item.child.forEach(function (ch, i, arr) {
+                                            sum += parseInt(ch[value.field]);
+                                        });
+                                        if (item.level !== groupArray.length) {
+                                            item[value.field] = sum / item.child.length;
+                                        }
+                                    });
+                                    break;
+                                case 'count':
+                                    uniqueArray.forEach(function (item, i, arr) {
+                                        if (item.level !== groupArray.length) {
+                                            item[value.field] = item.child.length;
+                                        }
+                                    });
+                                    break;
+                                case 'max':
+                                    uniqueArray.forEach(function (item, i, arr) {
+                                        var max = null;
+                                        item.child.forEach(function (ch, i, arr) {
+                                            if ( parseInt(ch[value.field]) > max || max === null ) {
+                                                max = parseInt(ch[value.field]);
+                                            }
+                                        });
+                                        if (item.level !== groupArray.length) {
+                                            item[value.field] = max;
+                                        }
+                                    });
+                                    break;
+                                case 'min':
+                                    uniqueArray.forEach(function (item, i, arr) {
+                                        var min = null;
+                                        item.child.forEach(function (ch, i, arr) {
+                                            if (parseInt(ch[value.field]) < min || min === null) {
+                                                min = parseInt(ch[value.field]);
+                                            }
+                                        });
+                                        if (item.level !== groupArray.length) {
+                                            item[value.field] = min;
+                                        }
+                                    });
+                                    break;
+                                case 'sum':
+                                    uniqueArray.forEach(function (item, i, arr) {
+                                        var sum = null;
+                                        item.child.forEach(function (ch, i, arr) {
+                                            sum += parseInt(ch[value.field]);
+                                        });
+                                        if (item.level !== groupArray.length) {
+                                            item[value.field] = sum;
+                                        }
+                                    });
+                                    break;
+                                case 'zero':
+                                    uniqueArray.forEach(function (item, i, arr) {
+                                        if (item.level !== groupArray.length) {
+                                            item[value.field] = 0;
+                                        }
+                                    });
+                                    break;
+                                default:
+                                    alert('I dont know that values - ', value);
+                            }
+                        });
+
+                        function findChildElements(elem) {
+                            var childs = [];
+                            data.forEach(function (item, i, arr) {
+
+                            });
+                            //childs = _.takeWhile(data, function (o) { return !o.active; });
+                            return childs;
+                        }
+                        /*What data display in rows*/
+                        uniqueArray.forEach(function (item, i, arr) {
+                            /*if it is last element(display everything but not group)*/
+                            if (item.level === groupLength) {
+                                item.lastItem = true;
+                                item.groupValue = item.groupName = null;
+                            }
+
+                            /*if element is not the last and it is opened*/
+                            else if (item.level > 0 && arr[i + 1].level > item.level) {
+                                item = displayMiddleElem(item, groupArray);
+                                item.opened = true;
+                            }
+
+                            /*if element not last in tree and it is not opened*/
+                            else if (item.level > 0) {
+                                item = displayMiddleElem(item, groupArray);
+                            }
+
+                            /*if element is first and not opened*/
+                            else if (item.level == 0) {
+                                for (var prop in item) {
+                                    var display = _.indexOf(notClosingCols, prop);
+                                    if (display === -1) {
+                                        item[prop] = null;
+                                    }
+                                }
+                                if (arr[i + 1] && (arr[i + 1].level > item.level)) {
+                                    item.opened = true;
+                                }
+                            }
+
+                            function displayMiddleElem(item, groupArray) {
+                                item.groupName = groupArray[item.level].field;
+                                item.groupValue = item[groupArray[item.level].field];
+                                for (var prop in item) {
+                                    var display = _.indexOf(notClosingCols, prop);
+                                    if (display === -1) {
+                                        item[prop] = null;
+                                    }
+                                }
+                                return item;
+                            }
+                        });
+                        deferred.resolve(uniqueArray);
                     });
-                    sortedArray = _.sortBy(data, stringSorting);
-                    var uniqArray = _.uniqBy(data, groupArray[0].field.toString());
-
-
-                    deferred.resolve(uniqArray);
-                });
                 return deferred.promise;
             }
         };
     }    
 })
-.controller('TableController', ['$scope', '$attrs', '$compile', 'Notification', "groupDataProvider", "generateMarkupGridProvider", function Controller($scope, $attrs, $compile, Notification, groupDataProvider, generateMarkupGridProvider) {
+.controller('TableController', ['$scope', '$attrs', '$compile', 'Notification', "groupDataProvider", "generateMarkupGridProvider", "$timeout", function Controller($scope, $attrs, $compile, Notification, groupDataProvider, generateMarkupGridProvider, $timeout) {
     $scope.columns = [];
     $scope.visibleColumns = {};
     $scope.arrayList = [];
@@ -132,6 +341,7 @@
         order: 'asc'
     };
     $scope.columnDropArray = [];
+    $scope.columnValues = [];
     $scope.api = {
         refresh: function () { self.loadData(false); }
     };
@@ -156,11 +366,10 @@
     };
     this.loadData = function (isAppend) {
         var filter = typeof $scope.filter == "undefined" ? [] : $scope.filter;
-        setDataProvider.setGroup($scope.columnDropArray);
+        setDataProvider.setGroupAndValues($scope.columnDropArray, $scope.columnValues);
         setDataProvider.setClicked(clickedChild);
         setDataProvider.getData({ filter: filter, sort: $scope.sort, next: isAppend }).then(function (data) {
             $scope.arrayList = isAppend ? $scope.arrayList.concat(data) : data;
-            console.log("Data is: ", data);
         });
     };
     this.loadMore = function () {
@@ -173,9 +382,7 @@
         var sort = $scope.sort;
         sort.column = $scope.columns[index].field;
         sort.order === 'asc' ? sort.order = 'desc' : sort.order = 'asc';
-        //not sure
         self.refreshTable();
-        //insted of this this.setDataProvider(setDataProvider);
     };
     this.isSelectedRow = function (obj, index) {
         $scope.selectedRow === index ? $scope.selectedRow = null : $scope.selectedRow = index;
@@ -197,9 +404,11 @@
         return result;
     };
     this.addClickedChild = function ($event) {
+        $event.stopPropagation();
         var clickedObj = {
             value: $event.target.attributes['criteriy-value'].value,
-            field: $event.target.attributes['criteriy-field'].value
+            field: $event.target.attributes['criteriy-field'].value,
+            level: $event.target.attributes['criteriy-level'].value
         }
         
         var finded = _.find(clickedChild, clickedObj);
@@ -207,94 +416,23 @@
             clickedChild.push(clickedObj);
         }
         else {
+            /*remove children*/
+            var index = _.findIndex(clickedChild, clickedObj);
+            if (clickedChild[index + 1] && clickedChild[index + 1].level > clickedChild[index].level) {
+                _.remove(clickedChild, clickedChild[index + 1]);
+            }
+
+            /*remove element*/
             _.remove(clickedChild, clickedObj);
+            
         }
+
         /*Refresh everything*/
         self.loadData(false);
         self.createNewParameters(false);
         self.contentInserting('.grid-table', generateMarkupGridProvider.main($scope.columns, $scope.visibleColumns, $scope.columnDropArray));
         $scope.selectedRow = null;
     };
-    this.groupChild = {
-        displayOrRemove: function (index, childMarkup, element) {
-            var childElements = angular.element(".child-tr-" + index),
-                childElem = angular.element(childMarkup);
-
-            if (childElements.length == 0) {
-                childElem.insertAfter(element);
-                $compile(childElem)($scope);
-            } else {
-                childElements.remove();
-            }
-        },
-        openLevelChild: function (parent, $event, index, line) {
-            $event.stopPropagation();
-            console.log(parent);
-            var ChildsStr = '',
-                element = angular.element($event.target),
-                childElements = element.children("div");
-
-            element.hasClass('group-tree-opened') ? element.removeClass('group-tree-opened') : element.addClass('group-tree-opened');
-
-            /*Checking if it is last element in child tree*/
-            if (childElements.length > 0) {
-                console.log(childElements[0]);
-                for (var i = 0, j = childElements.length; i < j;i++){
-                    var childElem = angular.element(childElements[i]);
-
-                    if (childElem.hasClass("display-block")) {
-                        childElem.removeClass("display-block").addClass("display-none");
-                        this.displayOrRemove(index, ChildsStr, element);
-                    }
-                    else {
-                        childElem.removeClass("display-none").addClass("display-block");
-                    }
-                }
-            } else {
-
-                /*Creating markup html for child element*/
-                line.child.forEach(function (item, i, arr) {
-                    var childLine = '<td class="grid-item"></td>';
-                    $scope.columns.forEach(function (col, i, columns) {
-                        for (var prop in item) {
-                            if (prop == col.field && !$scope.visibleColumns[col.title]) {
-                                childLine += '<td class="grid-item">' + item[prop] + '</td>';
-                            }
-                        }
-                    });
-                    ChildsStr += '<tr class="child-tr-appended child-tr-' + index + '" ng-class="{\'grid-line-item\': true}">' + childLine + '</tr>';
-                });
-                console.log(ChildsStr);
-                /*Append generated markup of top line parent element*/
-                this.displayOrRemove(index, ChildsStr, this.findAppendParent(element));
-            }
-        },
-        findAppendParent: function (element) {
-            var parent = angular.element(element)[0].parentElement;
-
-            if (parent.className.includes("grid-line-item")) {
-                return angular.element(parent);
-            }
-            else {
-                return self.groupChild.findAppendParent(parent);
-            }
-        },
-        clearChild: function (element) {
-            console.log(element);
-            var child = angular.element(element.children("div")[0]);
-
-            if (element.children("div").length > 0) {
-                this.clearChild(child);
-            }
-            if (child.hasClass('display-block')) {
-                child.removeClass('display-block').addClass("display-none");
-            }
-            if (child.hasClass('group-tree-opened')) {
-                child.removeClass('group-tree-opened');
-            }
-            
-        }
-    }
     this.createNewParameters = function (isDraged) {
         if (isDraged) {
             findChangingElements = { isFounded: false, length: 0 };
@@ -302,6 +440,42 @@
         }
         $scope.treeList = self.creatingTreeList($scope.columnsGroup);
         $scope.columns = self.getColumnsArray($scope.columnsGroup);
+    };
+    this.columnValue = {
+        open: function (obj, e, indexOpened) {
+            var options = ['avg', 'count', 'first', 'last', 'max', 'min', 'sum', 'zero'],
+                optionString = '',
+                elementContext = '';
+
+            this.indexOpened = indexOpened;
+
+            options.forEach(function (item, i, arr) {
+                optionString += '<li style="cursor:pointer;" ng-click="ctrl.columnValue.changeValue(\''+item+'\',$event)">' + item + '</li>';
+            });
+
+            elementContext = '<div style="background: #2e9292;box-sizing: border-box;font-family: Arial;color: #f0eceb; position: absolute;width: 120px;height: 100px;overflow-x: hidden;"><ul><li style="height:0px; list-style: none;"><input type="text" class="inputForFocus" style="height:0px; border:none; width:0;"/></li>' + optionString + '</ul></div>';
+ 
+            divForInner = angular.element(elementContext);
+            insertedElement = angular.element(e.target).append(divForInner);
+            $compile(divForInner)($scope);
+
+            /*focus in hidden input*/
+            insInput = divForInner.find('.inputForFocus').focus();
+            insInput.focusout(function () {
+                $timeout(function () {
+                    divForInner.remove();
+                }, 200);
+            });
+        },
+        indexOpened: null,
+        changeValue: function (name, e) {
+            e.stopPropagation();
+            if (this.indexOpened !== null) {
+                $scope.columnValues[this.indexOpened].values = name;
+                this.indexOpened = null;
+                self.refreshTable();
+            }
+        }
     };
     this.dragAndDrop = {
         values: {},
@@ -338,6 +512,34 @@
                 Notification.error({ message: 'You tried to drag not the column', title: 'Error', positionY: 'top', positionX: 'right', delay: 4000 });
             }
         },
+        addValue:function ($event) {
+            var obj = this.values.drag;
+            var title = obj.title,
+                isInsertedBefore = false;
+
+            if (obj.isColumn && obj.title==="Number") {
+
+                $scope.columnValues.forEach(function (item, i, arr) {
+                    if (item.id === obj.id && item.title === obj.title) {
+                        isInsertedBefore = true;
+                    }
+                });
+
+                $scope.columns.forEach(function (item, i, arr) {
+                    if (item.title === obj.title) {
+                        obj.field = item.field;
+                    }
+                });
+
+                /*first init values*/
+                obj.values = 'first';
+                !isInsertedBefore ? $scope.columnValues.push(obj) : Notification({ message: 'You column are here!', title: 'Hmmm', positionY: 'top', positionX: 'right', delay: 4000 });
+                self.refreshTable();
+            }
+            else {
+                Notification.error({ message: 'You tried to drag not the column or Column value is not number', title: 'Error', positionY: 'top', positionX: 'right', delay: 4000 });
+            }
+        },
         addColumnDrop: function (title, obj) {
             var isInsertedBefore = false;
             $scope.columnDropArray.forEach(function (item, i, arr) {
@@ -360,6 +562,15 @@
                 }
             });
             self.refreshTable();  
+        },
+        deleteValueDrop: function (index, title) {
+            var notVisibleColumns = $scope.columnValues.splice(index, $scope.columnValues.length - index);
+            notVisibleColumns.forEach(function (item, i, arr) {
+                if (notVisibleColumns[item.title]) {
+                    notVisibleColumns[item.title] = false;
+                }
+            });
+            self.refreshTable();
         }
     };
     this.refreshTable = function () {
@@ -727,160 +938,3 @@
         }
     };
 });
-/*
-Sorting : Number.
-[   
-    {  
-        "Id":null,
-        "Number":8,
-        "Text1":null,
-        "Text2":null,
-        "Text3":null,
-        "child":[  
-           {  
-               "Id":98,
-               "Number":8,
-               "Text1":"Hammer142",
-               "Text2":"Hardware232",
-               "Text3":"Something642"
-           },
-           {  
-               "Id":68,
-               "Number":8,
-               "Text1":"Hammer932",
-               "Text2":"Hardware2832",
-               "Text3":"Something7932"
-           }
-        ]
-    }
-]
-
-But if sorting: Number+Personal Key.
-[  
-   {  
-       "Id":null,
-       "Number":8,
-       "Text1":"Hammer142",
-       "Text2":null,
-       "Text3":null,
-       "child":[  
-          {  
-              "Id":98,
-              "Number":8,
-              "Text1":"Hammer142",
-              "Text2":"Hardware232",
-              "Text3":"Something642"
-          }
-       ]
-   },
-   {  
-       "Id":null,
-       "Number":8,
-       "Text1":"Hammer932",
-       "Text2":null,
-       "Text3":null,
-       "child":[  
-          {  
-              "Id":68,
-              "Number":8,
-              "Text1":"Hammer932",
-              "Text2":"Hardware2832",
-              "Text3":"Something7932"
-          }
-       ]
-   }
-]
-*/
-/*groupArray.forEach(function (groupElement, i, arr) {
-                       if (i == 0) {
-                           sortedArray = self.grouping(data, [groupElement]);
-                       }
-                       if (i > 0) {
-                           sortedArray = self.groupLastChild(sortedArray, groupElement);
-                       }
-                   });
-deferred.resolve(sortedArray);
-});
-return deferred.promise;
-},
-createTree: function (array, groupArray) {
-
-},
-groupClever: function (data, groupArray) {
-    var stringSorting = '',
-        sortedArray,
-        uniqGroupElement; 
-
-    groupArray.forEach(function (line, i, arr) {
-        stringSorting += groupArray[i].field;
-        if (i + 1 !== arr.length) {
-            stringSorting += ' ';
-        }
-    });
-    sortedArray = _.sortBy(data, stringSorting);
-                
-    return sortedArray;
-} 
-groupLastChild: function (array, groupElem) {
-    var self = this;
-
-    if (!array[0].child) {
-        var result = (self.grouping(array, [groupElem]));
-        array = [];
-        result.forEach(function (item, i, arr) {
-            array.push(item);
-        });
-        return array;
-    }
-    else {
-        array.forEach(function (item, i, array) {
-            item.child = self.groupLastChild(item.child, groupElem);
-        });
-    }
-    return array;
-},
-grouping: function (data, groupArray) {
-    var sortedArray = [];
-    sortedArray = _.uniqBy(data, function (obj) {
-        var strReturn = '';
-        groupArray.forEach(function (line, i, arr) {
-            strReturn += obj[groupArray[i].field];
-            if (i !== arr.length) {
-                strReturn += ' ';
-            }
-        });
-        return strReturn;
-    });
-
-    sortedArray = _.cloneDeep(sortedArray);
-
-    sortedArray.forEach(function (item, i, arr) {
-        var isLine;
-        for (var prop in item) {
-            isLine = false;
-            groupArray.forEach(function (line, i, arr) {
-                if (prop === line.field) {
-                    isLine = true;
-                }
-            });
-            if (!isLine) {
-                item[prop] = null;
-            }
-        }
-
-        item.child = [];
-        data.forEach(function (line, i, arr) {
-            var childPropCount = 0;
-            for (var prop in line) {
-                if (line[prop] === item[prop]) {
-                    childPropCount++;
-                }
-            }
-            if (childPropCount === groupArray.length) {
-                item.child.push(line);
-            }
-        });
-
-    });
-    return sortedArray;
-}*/

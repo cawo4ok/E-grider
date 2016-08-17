@@ -26,7 +26,6 @@ namespace WebApplication4.Controllers
             {
                 LIST.Add(new Product(100 - i, rnd.Next(1, 130) - 31 + i, "Hammer" + rnd.Next(1, 20) + i, "Hardware" + rnd.Next(1, 40) + i, "Something" + rnd.Next(56, 80) + i));
             }
-           
         }
 
         [HttpGet]
@@ -39,7 +38,7 @@ namespace WebApplication4.Controllers
         [HttpPost]
         public IEnumerable<Product> Post(Parameters product)
         {
-            
+            System.Diagnostics.Debug.WriteLine(product);
             if (product != null)
             {
                 if (product.column == "Number")
@@ -68,7 +67,7 @@ namespace WebApplication4.Controllers
                 list = new List<Product>();
 
 
-                list = LIST.Skip(product.startIndex).Take(product.endIndex - product.startIndex).ToList();
+                    list = LIST.Skip(product.startIndex).Take(product.endIndex - product.startIndex).ToList();
                     if (product.filter.Length > 0)
                     {
                         List<Product> listFiltered = new List<Product>();

@@ -23,4 +23,15 @@
             <div class="button-right-corner-block"></div>
         </div>
     </div>
+    <div class="grid-column-drop" drop-channel="*" ui-on-drop="ctrl.dragAndDrop.addValue($event)">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAMZJREFUeNpi/P//PwMlgImBQjDwBrCgmMYENq8RiLVxqL8KxPX//v1DiIACEYYZGRlBmBOIe4B4PRDrQMUYoGyQGIoebAbADJkAxFuAWA9JXJdYA0CYC4inAPFOINZHlkPWgxKIcFMhQA0aFveB+DbOUERxDhQAbTEC4qNAPBfqEmRx3F6AAhOgojNAvBikGckumDiKHhY0B3ECcTVQQhRIg/B1NNeeB1IgQ7/BXYvmdE6oAnYcPv4NxF+BerAbMDTzAkCAAQChYIl8b86M1gAAAABJRU5ErkJggg==" alt="Values" ng-class="columnValues.length > 0 ? 'grid-column-drop-icon' : 'grid-column-drop-icon-empty'"/>
+        <ul class="grid-column-drop-list">
+            <li class="grid-column-drop-item" ng-repeat="item in columnValues track by $index">
+                <span class="grid-column-drop-text" ng-click="ctrl.columnValue.open(item, $event, $index)">{{item.values}}({{item.title}})</span>
+                <img src="http://cdn.ezanga.com/images/icons/clicks-hover.png" alt="open" style="width: 15px;position: relative;left: -15px;" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/VisualEditor_-_Icon_-_Close_-_white.svg/2000px-VisualEditor_-_Icon_-_Close_-_white.svg.png" alt="close" class="grid-column-close" ng-click="ctrl.dragAndDrop.deleteValueDrop($index, item.title)" /> 
+            </li>
+            <span ng-style="columnValues.length > 0 ? {'display':'none'} : {'display':'block'}">Values</span>
+        </ul>
+    </div>
 </div>
